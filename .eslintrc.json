@@ -1,0 +1,37 @@
+{
+	"rules": {
+		"import/no-named-as-default": "off",
+		"import/order": [
+			"error",
+			{
+				"newlines-between": "always",
+				"groups": [
+					["builtin", "external"],
+					"internal",
+					"parent",
+					["sibling", "index"]
+				]
+			}
+		],
+		"import/prefer-default-export": "off",
+		"no-restricted-exports": "off",
+		"no-promise-executor-return": "off",
+		"no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
+		"max-params": ["error", 4],
+		"prettier/prettier": "warn"
+	},
+	"env": {
+		"browser": true,
+		"es6": true,
+		"jest": true,
+		"commonjs": true,
+		"node": true,
+		"es2021": true
+	},
+	"extends": ["standard", "eslint:recommended", "prettier"],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"plugins": ["prettier", "jest"]
+}
