@@ -51,8 +51,8 @@ module.exports = defineConfig({
                 }
             });
         },
-        // supportFile: 'cypress/support/index.js',
+        supportFile: "cypress/support/e2e.js",
         specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx}",
-        testIsolation: true,
+        testIsolation: false,
     },
 });
