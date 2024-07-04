@@ -1,37 +1,71 @@
 {
-	"rules": {
-		"import/no-named-as-default": "off",
-		"import/order": [
-			"error",
-			{
-				"newlines-between": "always",
-				"groups": [
-					["builtin", "external"],
-					"internal",
-					"parent",
-					["sibling", "index"]
-				]
-			}
-		],
-		"import/prefer-default-export": "off",
-		"no-restricted-exports": "off",
-		"no-promise-executor-return": "off",
-		"no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
-		"max-params": ["error", 4],
-		"prettier/prettier": "warn"
-	},
+	"extends": [
+	  "airbnb-base",
+	  "airbnb-typescript/base",
+	  "eslint:recommended",
+	  "plugin:jest/recommended",
+	  "plugin:@typescript-eslint/recommended",
+	  "plugin:@typescript-eslint/recommended-requiring-type-checking",
+	  "plugin:security/recommended",
+	  "plugin:prettier/recommended"
+	],
 	"env": {
-		"browser": true,
-		"es6": true,
-		"jest": true,
-		"commonjs": true,
-		"node": true,
-		"es2021": true
+	  "node": true,
+	  "es6": true,
+	  "jest": true
 	},
-	"extends": ["standard", "eslint:recommended", "prettier"],
+	"plugins": ["jest", "security"],
+	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"ecmaVersion": 2018,
-		"sourceType": "module"
+	  "ecmaVersion": 6,
+	  "sourceType": "module",
+	  "project": ["./tsconfig.json"]
 	},
-	"plugins": ["prettier", "jest"]
-}
+	"overrides": [
+	  {
+		"files": ["*/.spec.ts"],
+		"plugins": ["jest"],
+		"rules": {
+		  "@typescript-eslint/unbound-method": "off",
+		  "jest/unbound-method": "error"
+		}
+	  }
+	],
+	"rules": {
+	  "no-unused-vars": ["error", { "vars": "local" }],
+	  "no-unused-expressions": ["error", { "allowTernary": true }],
+	  "no-console": "off",
+	  "max-len": ["warn", { "code": 180, "ignoreStrings": true }],
+	  "one-var": "off",
+	  "import/extensions": "off",
+  
+	  /* This rule can’t be used with projects that involve AWS Lambda Functions that reference custom code in Lambda Layers.
+	  Layer code MUST be imported relative to the root ('/opt/[layer path]'), which is an absolute path. */
+	  "import/no-absolute-path": "off",
+  
+	  "import/prefer-default-export": "off",
+	  "import/no-extraneous-dependencies": [
+		"error",
+		{
+		  "devDependencies": [
+			"*/.spec.ts",
+			"*/test-utils/.ts"
+		  ]
+		}
+	  ],
+	  "prettier/prettier": [
+		"error",
+		{
+		  "singleQuote": true,
+		  "tabWidth": 4
+		}
+	  ]
+	},
+	"settings": {
+	  "import/resolver": {
+		"node": {
+		  "moduleDirectory": ["node_modules", "src/"]
+		}
+	  }
+	}
+  }
