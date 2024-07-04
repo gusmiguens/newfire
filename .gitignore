@@ -1,5 +1,5 @@
 node_modules/
-.env.*.stg
+.env.stg
 
 cypress/screenshots
 cypress/videos
