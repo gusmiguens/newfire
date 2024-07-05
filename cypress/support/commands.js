@@ -20,3 +20,22 @@ Cypress.Commands.add("login", (credentials = {}) => {
         }
     );
 });
+
+Cypress.Commands.add("apiAuth", (credentials = {}) => {
+    const url = Cypress.env("API_URL");
+
+    const { username, password } = credentials;
+
+    const _credentials = {
+        userName: username || Cypress.env("API_USER"),
+        password: password || Cypress.env("PASS"),
+    };
+
+    cy.request("POST", `${url}/Account/v1/GenerateToken`, _credentials).as(
+        "token"
+    );
+    cy.get("@token").then((res) => {
+        const token = res.body.token;
+        Cypress.env("token", token);
+    });
+});
