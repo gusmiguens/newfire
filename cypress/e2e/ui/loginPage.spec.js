@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import "cypress-each";
-import testCases from "../fixtures/users.json";
+import testCases from "../../fixtures/loginScenarios.json";
 
 describe("Login tests", { testIsolation: true }, () => {
     describe("Non successfull login scenarios", () => {

@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import "cypress-each";
-import LoginPage from "../pageObjects/loginPage";
-import testCases from "../fixtures/users.json";
+import LoginPage from "../../pageObjects/loginPage";
+import testCases from "../../fixtures/loginScenarios.json";
 
 describe("Login tests", { testIsolation: true }, () => {
     const loginPage = new LoginPage();
